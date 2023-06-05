@@ -1,4 +1,4 @@
-from Test1 import name,delete
+from Test import name,delete
 
 
 delete(name())
