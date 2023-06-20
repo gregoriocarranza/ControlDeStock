@@ -1,16 +1,15 @@
-from Menu import menu
-from utils import limpiar_terminal
-# def initAllScv():
-#     try:
-#       with open(r'usuarios.csv', 'w+') as userScv:
-#           print("archivo Creado Con Exito")
-#     except IOError as msj:
-#         print(f'ERROR ---------> {msj}')
-#     return True
+from Modules.Menues.LoginMenu import LoginMenu
+# from Modules.Menues.MainManue import MainManue
+from Modules.Utils.Utils import limpiar_terminal,initCsv
+archivoDeUsuarios="./archivos/usuarios.csv"
+archivoDeProductos="./archivos/productos.csv"
 
-# initAllScv()
+initCsv(archivoDeUsuarios)
+initCsv(archivoDeProductos)
+
+
 limpiar_terminal(0.1)
-inicio=menu()
+inicio=LoginMenu(archivoDeUsuarios)
 
 while inicio:
     print("Main")
