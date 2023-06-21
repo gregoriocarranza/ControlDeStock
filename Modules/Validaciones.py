@@ -1,6 +1,11 @@
 import csv
-proveedores_autorizados = ('gmail.com', 'hotmail.com', 'outlook.com')
+from Modules.Utils.Utils import archivoDeUsuarios,proveedores_autorizados
 caracteres_especiales = "!@#$%^&*()-+"
+
+
+
+
+#----------------------------------------------------------Validaciones de registro y ingreso----------------------------------------------------------
 
 def ValidarCaracteresEspeciales(texto,textoDeError):
     user=input(texto)
@@ -9,15 +14,24 @@ def ValidarCaracteresEspeciales(texto,textoDeError):
     return user
 
 
-def validar_email(texto,textoDeError,valida):
-    email=input(texto)
-    username, domain = email.split("@")  
-    while domain not in proveedores_autorizados or not "@" in email:
-        email=input(textoDeError)
-        username, domain = email.split("@")
-    # if valida:
-        # validar_registro(email,"El correo electrónico ya está registrado.")
-    return email
+def validar_email(texto, textoDeError, valida):
+    while True:
+        email = input(texto)
+        try:
+            username, domain = email.split("@")
+        except ValueError:
+            print(textoDeError)
+            continue
+    
+        if domain not in proveedores_autorizados or not "@" in email:
+            print(textoDeError)
+            continue
+        
+        if valida:
+            if not validar_registro(email, "El correo electrónico ya está registrado."):
+                continue
+        
+        return email
 
 def validar_contrasena(texto,textoDeError1,textoDeError2):
     contrasena=input(texto)
@@ -28,12 +42,47 @@ def validar_contrasena(texto,textoDeError1,textoDeError2):
         contrasena=input(textoDeError2)
     return contrasena
 
+def validar_rango(texto,textoDeError,limi,lims):
+    nro=int(input(texto))
+    while(nro<limi or nro>lims):
+        nro=int(input(textoDeError))
+    return nro
+    
 
-# def validar_registro(email,textoDeError):
-#     with open('usuarios.csv', 'r+') as archivo_csv:
-#         reader = csv.reader(archivo_csv)
-#         for row in reader:
-#             print(row)
-#             if email.lower() == row[0].lower():
-#                 return False
-#     return True
+def validar_registro(email,  textoDeError):
+    resp=True
+    with open(archivoDeUsuarios, 'r') as archivo_de_usuarios:
+        contenido_reg = archivo_de_usuarios.readlines()
+        for linea in contenido_reg:
+            campos = linea.strip().split(';')
+            email_registrado = campos[1]
+            if email == email_registrado:
+                print(textoDeError)
+                resp= False
+    return resp
+
+#----------------------------------------------------------Validaciones ingreso de productos----------------------------------------------------------
+
+# Función para validar si una cadena contiene solo caracteres alfanuméricos
+def contiene_caracteres_alfanumericos(cadena):
+    return cadena.isalnum()
+
+# Función para validar si un número es un entero o decimal válido y positivo
+def validar_numero_positivo(numero):
+    try:
+        num = float(numero)
+        if num >= 0:
+            return True
+        else:
+            return False
+    except ValueError:
+        return False
+
+# Función para validar el código del producto
+def validar_codigo(codigo, codigos_existentes):
+    if codigo in codigos_existentes:
+        return False
+    elif not contiene_caracteres_alfanumericos(codigo):
+        return False
+    else:
+        return True

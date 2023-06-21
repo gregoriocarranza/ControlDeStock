@@ -1,6 +1,6 @@
-from IngresoDeProductos import ingresoDeProductos
-from ControlDeStock import controlDeStock
-from Informes import informes
+from Modules.IngresoProductos import ingresoDeProductos
+# from ControlDeStock import controlDeStock
+# from Informes import informes
 
 
 
@@ -15,9 +15,12 @@ def MainManue():
         if opcion == "1":
             ingresoDeProductos()
         elif opcion == "2":
-            controlDeStock()
+            # controlDeStock()
+            print("Control de stock")
         elif opcion == "3":
-            informes()
+            # informes()
+            print("Informes")
+            
         elif opcion == "4":
             break
         else:

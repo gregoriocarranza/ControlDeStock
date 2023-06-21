@@ -1,6 +1,6 @@
 from Modules.Login import login,registro
 
-def LoginMenu(archivo):
+def LoginMenu():
     resp=False
     while True and not resp:
         print("1. Registro")
@@ -9,9 +9,9 @@ def LoginMenu(archivo):
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
-            registro(archivo)
+            registro()
         elif opcion == "2":
-            resp=login(archivo)
+            resp=login()
         elif opcion == "3":
             break
         else:
