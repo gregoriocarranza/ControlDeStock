@@ -1,12 +1,9 @@
 import csv
-caracteres_especiales = "!@#$%^&*()-+"
-
-
-
 
 #----------------------------------------------------------Validaciones de registro y ingreso----------------------------------------------------------
 
 def ValidarCaracteresEspeciales(texto,textoDeError):
+    caracteres_especiales = "!@#$%^&*()-+"
     user=input(texto).capitalize()
     while any(char in caracteres_especiales for char in user):
         user=input(textoDeError)
