@@ -5,7 +5,8 @@ from Modules.IngresoProductos import ingresoDeProductos
 
 
 def MainManue():
-    while True:
+    resp=True
+    while True and resp:
         print("1. Ingreso de productos")
         print("2. Actualizar de stock")
         print("3. Informes")
@@ -22,6 +23,7 @@ def MainManue():
             print("Informes")
             
         elif opcion == "4":
-            break
+            resp=False
         else:
             print("Opción inválida.")
+    return resp

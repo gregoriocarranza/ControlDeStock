@@ -1,19 +1,15 @@
 from Modules.Validaciones import validar_codigo,contiene_caracteres_alfanumericos,validar_numero_positivo
-from Modules.Utils.Utils import archivoDeProductos
-
 
 
 def ingresoDeProductos():
     
-    codigos,nombres=Rescate_de_variables()
-    print(codigos,nombres)
-    codigo = input("Ingrese el código del producto: ")
-    while not validar_codigo(codigo, codigos):
-        print("El código ingresado no es válido o ya existe. Intente nuevamente.")
-        codigo = input("Ingrese el código del producto: ")
+    codigos,nombres,precios=Rescate_de_variables()
+    print(codigos,nombres,precios)
+    
+    codigo = validar_codigo(codigos,"Ingrese el código del producto: ","El código ingresado no es válido o ya existe. Ingrese nuevamente: ")
 
     nombre = input("Ingrese el nombre del producto: ")
-    while not contiene_caracteres_alfanumericos(nombre):
+    while not contiene_caracteres_alfanumericos(nombre,"El nombre ingresado contiene caracteres especiales. Intente nuevamente: "):
         print("El nombre ingresado contiene caracteres especiales. Intente nuevamente.")
         nombre = input("Ingrese el nombre del producto: ")
 
@@ -30,7 +26,7 @@ def ingresoDeProductos():
     codigos.append(codigo)
     nombres.append(nombre)
     
-    with open(archivoDeProductos, 'a') as archivo_productos:
+    with open("./Archivos/Productos.csv", 'a') as archivo_productos:
         archivo_productos.write(f"{codigo};{nombre};{precio};{stock}\n")
 
     return True
@@ -39,21 +35,13 @@ def ingresoDeProductos():
 def Rescate_de_variables():
     codigos = []
     nombres = []
-    # with open(archivoDeProductos, 'r') as archivo_productos:
-    #     archivo_productos.seek(0)
-    #     contenido_reg = archivo_productos.readline().strip()
-    #     while contenido_reg:
-    #         codigo,nombre,precio,stock = contenido_reg.split(';')
-    #         print(codigo,nombre,precio,stock)
-    #         codigos.append(codigo)
-    #         nombres.append(nombre)
-    #         contenido_reg = archivo_productos.readline().strip()
-    
-    with open(archivoDeProductos, 'r') as archivo_productos:
+    precios=[]
+    with open("./Archivos/Productos.csv", 'r') as archivo_productos:
         contenido_reg = archivo_productos.readlines()
         for linea in contenido_reg:
             campos = linea.strip().split(';')
             codigos.append(campos[0])
             nombres.append(campos[1])
+            precios.append(campos[2])
             
-    return codigos,nombres
+    return codigos,nombres,precios
