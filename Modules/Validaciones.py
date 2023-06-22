@@ -5,7 +5,7 @@ import csv
 def ValidarCaracteresEspeciales(texto,textoDeError):
     caracteres_especiales = "!@#$%^&*()-+"
     user=input(texto).capitalize()
-    while any(char in caracteres_especiales for char in user):
+    while any(char in caracteres_especiales for char in user)or user.strip()=="" or len(user)<8 or not contiene_caracteres_alfanumericos(user,""):
         user=input(textoDeError)
     return user
 

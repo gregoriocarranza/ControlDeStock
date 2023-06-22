@@ -8,8 +8,8 @@ initCsv("./Archivos/Ventas.csv")
 
 
 limpiar_terminal(0.1)
-inicio=True
-# inicio=LoginMenu()
+# inicio=True
+inicio=LoginMenu()
 
 
 while inicio:
