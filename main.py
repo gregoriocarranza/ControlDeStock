@@ -1,5 +1,5 @@
 from Modules.Menues.LoginMenu import LoginMenu
-from Modules.Menues.MainManue import MainManue
+from Modules.Menues.MainMenu import MainMenu
 from Modules.Utils.Utils import limpiar_terminal,initCsv
 
 initCsv("./Archivos/Usuarios.csv")
@@ -14,5 +14,5 @@ inicio=LoginMenu()
 
 while inicio:
     limpiar_terminal(2)
-    inicio=MainManue()
+    inicio=MainMenu()
     print("Main")

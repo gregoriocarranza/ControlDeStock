@@ -1,12 +1,10 @@
 from Modules.IngresoProductos import ingresoDeProductos
 # from ControlDeStock import controlDeStock
 # from Informes import informes
-# from Ventas import ventas
 
 
 
-
-def MainManue():
+def MainMenu():
     resp=True
     while True and resp:
         print("1. Ingreso de productos")
@@ -21,12 +19,10 @@ def MainManue():
             # controlDeStock()
             print("Control de stock")
         elif opcion == "3":
-            # ventas()
-            print("Ventas")
-        elif opcion == "4":
             # informes()
-            print("Informes")            
-        elif opcion == "5":
+            print("Informes")
+            
+        elif opcion == "4":
             resp=False
         else:
             print("Opción inválida.")

@@ -2,13 +2,11 @@ import csv
 
 #----------------------------------------------------------Validaciones de registro y ingreso----------------------------------------------------------
 
-def ValidarCaracteresEspeciales(texto,textoDeError):
-    caracteres_especiales = "!@#$%^&*()-+"
+def validar_caracteres_especiales(texto,textoDeError):
     user=input(texto).capitalize()
-    while any(char in caracteres_especiales for char in user)or user.strip()=="" or len(user)<8 or not contiene_caracteres_alfanumericos(user,""):
+    while caracteres_especiales(user):
         user=input(textoDeError)
     return user
-
 
 def validar_email(texto, textoDeError, valida):
     proveedores_autorizados = ('gmail.com', 'hotmail.com', 'outlook.com')
@@ -29,41 +27,57 @@ def validar_email(texto, textoDeError, valida):
 
 def validar_contrasena(texto,textoDeError1,textoDeError2):
     contrasena=input(texto)
-    while len(contrasena) < 5:
+    while validar_cantidad_caracteres(contrasena,5):
         contrasena=input(textoDeError1)
         
-    while (contrasena.isalpha() or contrasena.isdigit()) or not contrasena.isalnum():
+    while contiene_caracteres_alfanumericos(contrasena):
         contrasena=input(textoDeError2)
     return contrasena
-
-def validar_rango(texto,textoDeError,limi,lims):
-    nro=int(input(texto))
-    while(nro<limi or nro>lims):
-        nro=int(input(textoDeError))
-    return nro
     
-
 def validar_registro(email,  textoDeError):
     resp=True
     with open("./Archivos/Usuarios.csv", 'r') as archivo_de_usuarios:
-        contenido_reg = archivo_de_usuarios.readlines()
-        for linea in contenido_reg:
-            campos = linea.strip().split(';')
+        contenido_reg = archivo_de_usuarios.readline().strip()
+        while contenido_reg:
+            campos = contenido_reg.split(';')
             email_registrado = campos[1]
             if email == email_registrado:
                 print(textoDeError)
                 resp= False
+            contenido_reg = archivo_de_usuarios.readline().strip()
     return resp
 
 #----------------------------------------------------------Validaciones ingreso de productos----------------------------------------------------------
 
+def validar_precio_stock(texto, textoError):
+    valor = input(texto)
+    while not validar_numero_positivo(valor):
+        valor = input(textoError)
+    return valor
+
+def validar_codigo(codigos_existentes,texto,textoError):
+    codigo = input(texto).upper()
+    while (codigo in codigos_existentes or contiene_caracteres_alfanumericos(codigo)) and codigo!="EXIT":
+        codigo = input(textoError).upper()
+    return codigo
+
+def validar_nombre_producto(texto,textoError):
+    nombre = input(texto)
+    while caracteres_especiales(nombre) or nombre.isdigit():
+        nombre=input(textoError)
+    return nombre
+
+#----------------------------------------------------------Validaciones Comunes----------------------------------------------------------
+def caracteres_especiales(string):
+    caracteres_especiales = "!@#$%^&*()-+"
+    if any(char in caracteres_especiales for char in string):
+        return True
+    return False
 # Función para validar si una cadena contiene solo caracteres alfanuméricos
-def contiene_caracteres_alfanumericos(cadena,textoerror):
-    b=True
+def contiene_caracteres_alfanumericos(cadena):
     if (cadena.isalpha() or cadena.isdigit()) or not cadena.isalnum():
-        print (textoerror," (Caracteres alfanumericos no encontrados)")
-        b=False
-    return b
+        return True
+    return False
 
 # Función para validar si un número es un entero o decimal válido y positivo
 def validar_numero_positivo(numero):
@@ -75,12 +89,16 @@ def validar_numero_positivo(numero):
             return False
     except ValueError:
         return False
+    
+# Funcion para validar si un numero esta en rango
+def validar_rango(texto,textoDeError,limi,lims):
+    nro=int(input(texto))
+    while(nro<limi or nro>lims):
+        nro=int(input(textoDeError))
+    return nro
 
-
-def validar_codigo(codigos_existentes,texto,textoError):
-    codigo = input("Ingrese el código del producto: ")
-    print(codigo in codigos_existentes)
-    print(contiene_caracteres_alfanumericos(codigo,textoError))
-    while codigo in codigos_existentes or not contiene_caracteres_alfanumericos(codigo,textoError):
-        codigo = input(textoError)
-    return codigo
+# Funcion para validar si un numero es menor al limite
+def validar_cantidad_caracteres(string,limite):
+    if len(string) < limite:
+        return True
+    return False
