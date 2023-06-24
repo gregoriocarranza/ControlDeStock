@@ -7,6 +7,9 @@ def limpiar_terminal(t):
     time.sleep(t)
     os.system("cls")
 
+def pausa():
+    input("Presione Enter para continuar...")
+    limpiar_terminal(0.1)
 
 def initCsv(archivo_csv):
     try:
