@@ -8,12 +8,15 @@ initCsv("./Archivos/Ventas.csv")
 
 
 limpiar_terminal(0.1)
-inicio=True
-# inicio = LoginMenu()
+debug=True   #False: No debugging // True: Debugging
+inicio = LoginMenu(debug)
 
 
 while inicio:
     limpiar_terminal(1)
     inicio = MainMenu()
-print("Fin del programa\n")
+    
+    
+
+print("\n\nFin del programa\n")
 pausa()
