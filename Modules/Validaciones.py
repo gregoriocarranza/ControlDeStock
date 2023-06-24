@@ -5,7 +5,7 @@ import csv
 
 def validar_caracteres_especiales(texto, textoDeError):
     user = input(texto).capitalize()
-    while caracteres_especiales(user):
+    while caracteres_especiales(user) or validar_cantidad_caracteres(user,1):
         user = input(textoDeError)
     return user
 
@@ -124,7 +124,7 @@ def validar_rango(texto, textoDeError, limi, lims):
     return nro
 
 
-# Funcion para validar si un numero es menor al limite
+# Funcion para validar si un string es menor al limite
 def validar_cantidad_caracteres(string, limite):
     if len(string) < limite:
         return True

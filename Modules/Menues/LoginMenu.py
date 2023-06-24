@@ -12,12 +12,12 @@ def LoginMenu(debug):
         limpiar_terminal(0.4)
         
         if opcion == "1":
-            registro()
+            resp = registro()
         elif opcion == "2":
             resp = login()
         elif opcion == "3":
             break
         else:
             print("Opción inválida.")
-
+    
     return resp

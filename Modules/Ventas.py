@@ -7,7 +7,7 @@ from Modules.Validaciones import (
 from Modules.Utils.Utils import Rescate_de_variables,ordenar_por_vendido,pausa
 
 import csv
-
+from pprint import pprint
 
 def ventas():
     with open("./Archivos/Ventas.csv", "a") as archivo_ventas:
@@ -45,10 +45,9 @@ def ventas():
             while not validar_codigo(codigo,codigos) and codigo!="EXIT":
                     codigo = input("El código ingresado no es válido. Ingrese nuevamente: ").upper()
         
-        print(ventas) 
-        ventas_ordenadas=ordenar_por_vendido(ventas)
-        print(ventas_ordenadas)
-        pausa()
+        # ventas_ordenadas=ordenar_por_vendido(ventas)
+        # print(ventas_ordenadas,"\n")
+        # pausa()
 
 
 

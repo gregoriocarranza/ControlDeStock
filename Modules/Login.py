@@ -19,7 +19,7 @@ def registro():
         archivo_de_usuarios.write(f"{usuario};{email};{contraseña};{edad}\n")
 
         print("Registro exitoso.\n")
-        limpiar_terminal(2)
+        return True
 
 
 def login():
@@ -48,4 +48,4 @@ def login():
             print("Ingreso exitoso!")
             return True
 
-    limpiar_terminal(2)
+    limpiar_terminal(1)

@@ -13,7 +13,7 @@ inicio = LoginMenu(debug)
 
 
 while inicio:
-    limpiar_terminal(1)
+    limpiar_terminal(0.6)
     inicio = MainMenu()
     
     
