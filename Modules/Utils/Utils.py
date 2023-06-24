@@ -35,11 +35,3 @@ def Rescate_de_variables(codigos, nombres, precios, stocks):
             contenido_reg = archivo_productos.readline().strip()
 
     return codigos, nombres, precios, stocks
-
-def leerCsv():
-    datos = []
-    with open("./Archivos/productos.csv") as archivo_productos:
-        lector = csv.reader(archivo_productos)
-        for linea in lector:
-            datos.append(linea)
-    return datos

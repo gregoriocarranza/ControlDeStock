@@ -3,7 +3,7 @@ from Modules.Validaciones import (
     validar_numero_positivo,
     busq_indice,
 )
-from Modules.Utils.Utils import Rescate_de_variables,leerCsv
+from Modules.Utils.Utils import Rescate_de_variables
 
 import csv
 

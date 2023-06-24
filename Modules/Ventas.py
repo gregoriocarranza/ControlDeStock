@@ -4,7 +4,7 @@ from Modules.Validaciones import (
     validar_caracteres_especiales,
     busq_indice,
 )
-from Modules.Utils.Utils import Rescate_de_variables,leerCsv
+from Modules.Utils.Utils import Rescate_de_variables
 
 import csv
 
@@ -17,7 +17,6 @@ def ventas():
         precios = []
         stocks = []
         codigos, nombres, precios, stocks = Rescate_de_variables(codigos, nombres, precios, stocks)
-        datos = leerCsv()
 
         resp,codigo = validar_codigo(input("Ingrese el código del producto o EXIT para salir: ").upper(),codigos)
 

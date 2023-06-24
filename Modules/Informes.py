@@ -22,20 +22,20 @@ def generarInformes():
             venta = archivo_ventas.readline().strip()
 
         if productos:
-            parameters=['CODIGO', 'PRODUCTO', 'PRECIO', 'STOCK']
+            parameters=['CODIGO', 'PRODUCTO', 'PRECIO', 'STOCK',"$"]
+            informeFormatoEspecial(productos)
             informeOrdenadoPrecio(productos,parameters)
             informeOrdenadoStock(productos,parameters)
-            informeFormatoEspecial(productos)
             informeProductosSinStock(productos,parameters)
         else:
             print("No hay listado de productos, agrega uno para mostrar: ")
             
         
         if ventas:
-            parameters=['CODIGO', 'PRODUCTO', 'VENDIDO', 'VENDEDOR']
+            parameters=['CODIGO', 'PRODUCTO', 'VENDIDO', 'VENDEDOR',""]
             informeOrdenadoVentas(ventas,parameters)
         else:
-            print("No hay listado de productos, agrega uno para mostrar: ")
+            print("No hay ventas todavia, haz alguna para mostrar: ")
             
         
         
@@ -45,13 +45,13 @@ def generarInformes():
 def informeOrdenadoPrecio(productos,parameters):
     print()
     print('Informe ordenado por precio'.center(70, '-'))
-    ordenarProductos(2, productos)
+    ordenarProductos(2, productos,True)
     imprimirResultados(productos,parameters)
 
 def informeOrdenadoStock(productos,parameters):
     print()
     print('Informe ordenado por stock'.center(70, '-'))
-    ordenarProductos(3, productos)
+    ordenarProductos(3, productos,True)
     imprimirResultados(productos,parameters)
 
 def informeFormatoEspecial(productos):
@@ -70,19 +70,24 @@ def informeProductosSinStock(productos,parameters):
 def informeOrdenadoVentas(ventas,parameters):
     print()
     print('Informe ordenado por cantidad de ventas'.center(70, '-'))
-    ordenarProductos(2, ventas)
+    ordenarProductos(2, ventas,False)
     imprimirResultados(ventas,parameters)
         
 # ------------------------------------------------------------ Funciones Comunes ------------------------------------------------------------
 
-def ordenarProductos(ordenIndice, productos):
+def ordenarProductos(ordenIndice, productos,orden):
     cambio = True
     while cambio:
         cambio = False
         for x in range(len(productos)-1):
-            if(int(productos[x][ordenIndice]) > int(productos[x+1][ordenIndice])):
-                cambio = True
-                productos[x], productos[x+1] = productos[x+1], productos[x]
+            if orden:
+                if(int(productos[x][ordenIndice]) > int(productos[x+1][ordenIndice])):
+                    cambio = True
+                    productos[x], productos[x+1] = productos[x+1], productos[x]
+            else:
+                if(int(productos[x][ordenIndice]) < int(productos[x+1][ordenIndice])):
+                    cambio = True
+                    productos[x], productos[x+1] = productos[x+1], productos[x]
     return productos
 
 def imprimirResultados(productos,parameters):
@@ -90,7 +95,7 @@ def imprimirResultados(productos,parameters):
     print(parameters[0].ljust(20), parameters[1].ljust(20), parameters[2].ljust(20), parameters[3])
     print('-'.center(70, '-'))
     for x in range(len(productos)):
-        print(productos[x][0].ljust(20), productos[x][1].ljust(20), f'${productos[x][2].ljust(20)}', productos[x][3])
+        print(productos[x][0].ljust(20), productos[x][1].ljust(20), f'{parameters[4]}{productos[x][2].ljust(20)}', productos[x][3])
     print()
 
     
