@@ -109,7 +109,7 @@ def contiene_caracteres_alfanumericos(cadena):
 # Función para validar si un número es un entero o decimal válido y positivo
 def validar_numero_positivo(numero):
     try:
-        num = float(numero)
+        num = int(numero)
         if num >= 0:
             return True
         else:

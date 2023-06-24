@@ -1,6 +1,6 @@
 from Modules.IngresoProductos import ingresoDeProductos
 from Modules.Ventas import ventas
-# from ControlDeStock import controlDeStock
+from Modules.ControlDeStock import controlDeStock
 from Modules.Informes import generarInformes
 
 from Modules.Utils.Utils import limpiar_terminal
@@ -19,8 +19,8 @@ def MainMenu():
         if opcion == "1":
             ingresoDeProductos()
         elif opcion == "2":
-            # controlDeStock()
-            print("Control de stock")
+            controlDeStock()
+            # print("Control de stock")
         elif opcion == "3":
             ventas()
         elif opcion == "4":
