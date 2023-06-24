@@ -35,3 +35,7 @@ def Rescate_de_variables(codigos, nombres, precios, stocks):
             contenido_reg = archivo_productos.readline().strip()
 
     return codigos, nombres, precios, stocks
+
+
+def ordenar_por_vendido(diccionarios):
+    return sorted(diccionarios, key=lambda x: int(x['cantidad']), reverse=True)

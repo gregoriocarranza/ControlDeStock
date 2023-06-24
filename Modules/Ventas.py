@@ -4,7 +4,7 @@ from Modules.Validaciones import (
     validar_caracteres_especiales,
     busq_indice,
 )
-from Modules.Utils.Utils import Rescate_de_variables
+from Modules.Utils.Utils import Rescate_de_variables,ordenar_por_vendido,pausa
 
 import csv
 
@@ -28,9 +28,12 @@ def ventas():
             productoIndice = busq_indice(codigo, codigos)
             vendido = validar_stock_disponible(stocks[productoIndice],"Ingrese cantidad vendida del producto: ","La cantidad ingresada no es válida. Intente nuevamente: ")
             usuario = validar_caracteres_especiales("Ingrese el nombre del vendedor: ","El nombre no puede contener caracteres especiales, Ingrese otro para continuar : ")
+            
             ventas.append({"codigo": f"{codigos[productoIndice]}","producto": f"{nombres[productoIndice]}","cantidad": f"{vendido}","vendedor": f"{usuario}"})
+
             archivo_ventas.write(f"{codigos[productoIndice]};{nombres[productoIndice]};{vendido};{usuario}\n")
-            print("Ingreso de producto exitoso!")
+            
+            print("Venta de producto exitoso!")
             stocks[productoIndice]-=int(vendido)
             
             with open("./Archivos/productos.csv", "w", newline="") as archivo_productos:
@@ -41,6 +44,11 @@ def ventas():
     
             while not validar_codigo(codigo,codigos) and codigo!="EXIT":
                     codigo = input("El código ingresado no es válido. Ingrese nuevamente: ").upper()
+        
+        print(ventas) 
+        ventas_ordenadas=ordenar_por_vendido(ventas)
+        print(ventas_ordenadas)
+        pausa()
 
 
 
