@@ -64,14 +64,14 @@ def validar_precio_stock(texto, textoError):
 
 def validar_codigo(codigo,codigos_existentes):
     b=False
-    if (codigo in codigos_existentes and contiene_caracteres_alfanumericos(codigo)):
+    if (codigo in codigos_existentes and contiene_caracteres_alfanumericos(codigo) or validar_cantidad_caracteres(codigo,4)):
         b= True
     return b
 
 
 def validar_nombre_producto(texto, textoError,arrayNombre):
     nombre = input(texto)
-    while caracteres_especiales(nombre) or nombre.isdigit() or nombre in arrayNombre:
+    while caracteres_especiales(nombre) or nombre.isdigit() or nombre in arrayNombre or validar_cantidad_caracteres(nombre,7):
         nombre = input(textoError)
     return nombre
 
