@@ -66,9 +66,7 @@ def validar_codigo(codigo,codigos_existentes):
     b=False
     if (codigo in codigos_existentes and contiene_caracteres_alfanumericos(codigo)):
         b= True
-    if codigo == "EXIT":
-        codigo= "EXIT"
-    return b,codigo
+    return b
 
 
 def validar_nombre_producto(texto, textoError):

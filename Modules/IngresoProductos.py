@@ -13,10 +13,10 @@ def ingresoDeProductos():
     stocks = []
     
     codigos, nombres, precios, stocks = Rescate_de_variables(codigos, nombres, precios, stocks)
-    resp,codigo = validar_codigo(input("Ingrese el código del producto o EXIT para salir: ").upper(),codigos)
-
-    while resp and codigo!="EXIT":
-        resp,codigo = validar_codigo(input("El código ingresado no es válido. Ingrese nuevamente: ").upper(),codigos)
+     
+    codigo = input("Ingrese el código del producto o EXIT para salir: ").upper()
+    while validar_codigo(codigo,codigos) and codigo!="EXIT":
+        codigo = input("El código ingresado no es válido. Ingrese nuevamente: ").upper()
         
     while codigo != "EXIT":
 
@@ -31,8 +31,7 @@ def ingresoDeProductos():
             archivo_productos.write(f"{codigo};{nombre};{precio};{stock}\n")
             print("Ingreso de producto exitoso!")
 
-            resp,codigo = validar_codigo(input("Ingrese el código del producto o EXIT para salir: ").upper(),codigos)
-
-            while resp and codigo!="EXIT":
-                resp,codigo = validar_codigo(input("El código ingresado no es válido. Ingrese nuevamente: ").upper(),codigos)
+            codigo = input("Ingrese el código del producto o EXIT para salir: ").upper()
+            while validar_codigo(codigo,codigos) and codigo!="EXIT":
+                codigo = input("El código ingresado no es válido. Ingrese nuevamente: ").upper()
     return True

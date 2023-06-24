@@ -8,6 +8,7 @@ from Modules.Utils.Utils import limpiar_terminal
 def MainMenu():
     resp = True
     while True and resp:
+        limpiar_terminal(0.4)
         print("1. Ingreso de productos")
         print("2. Actualizar de stock")
         print("3. Ventas")
