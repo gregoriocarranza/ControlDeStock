@@ -8,7 +8,7 @@ initCsv("./Archivos/Ventas.csv")
 
 
 limpiar_terminal(0.1)
-debug=True   #False: No debugging // True: Debugging
+debug=False   #False: No debugging // True: Debugging
 inicio = LoginMenu(debug)
 
 
