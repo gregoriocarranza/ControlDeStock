@@ -14,7 +14,7 @@ def MainMenu():
         print("4. Informes")
         print("5. Salir\n")
         opcion = input("Seleccione una opción: ")
-        limpiar_terminal(1)
+        limpiar_terminal(0.4)
 
         if opcion == "1":
             ingresoDeProductos()
