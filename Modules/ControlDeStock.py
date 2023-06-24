@@ -14,7 +14,6 @@ def controlDeStock():
     precios = []
     stocks = []
     codigos, nombres, precios, stocks = Rescate_de_variables(codigos, nombres, precios, stocks)
-    datos = leerCsv()
 
     resp,codigo = validar_codigo(input("Ingrese el código del producto o EXIT para salir: ").upper(),codigos)
 
