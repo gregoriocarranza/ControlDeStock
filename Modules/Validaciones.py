@@ -69,9 +69,9 @@ def validar_codigo(codigo,codigos_existentes):
     return b
 
 
-def validar_nombre_producto(texto, textoError):
+def validar_nombre_producto(texto, textoError,arrayNombre):
     nombre = input(texto)
-    while caracteres_especiales(nombre) or nombre.isdigit():
+    while caracteres_especiales(nombre) or nombre.isdigit() or nombre in arrayNombre:
         nombre = input(textoError)
     return nombre
 
